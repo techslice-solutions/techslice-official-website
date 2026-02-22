@@ -1,0 +1,912 @@
+/*@import url('https://fonts.googleapis.com/css2?family=Aptos:wght@400&display=swap');*/
+[hidden] { display: none !important; }
+
+:root{
+  --red:#C8102E;
+  --yellow:rgb(243,233,82);
+  --indigo:rgb(41,57,105);
+  --light:#f9f9f9;
+  --dark:#222;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: "Aptos", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+body{
+  background:var(--light);
+  color:var(--dark);
+  line-height:1.6;
+}
+
+img{max-width:100%;display:block;}
+
+.container{
+  max-width:1150px;
+  margin:0 auto;
+  padding:0 5%;
+}
+
+.section{padding:64px 0;}
+.section--tight{padding:32px 0;}
+
+.grid-3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+@media(max-width:900px){
+  .grid-3{grid-template-columns:1fr;}
+}
+
+/* ===== HEADER ===== */
+
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:#fff;
+  border-bottom:1px solid rgba(0,0,0,.06);
+}
+
+.header-inner{
+  max-width:1150px;
+  margin:0 auto;
+  padding:8px 5%;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  position:relative;
+}
+
+.brand{
+  display:inline-flex;
+  align-items:center;
+  text-decoration:none;
+}
+
+.brand img{
+  height:36px;
+  width:auto;
+  object-fit:contain;
+}
+
+.site-nav{
+  margin-left:auto;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.site-nav a{
+  text-decoration:none;
+  color:var(--indigo);
+  font-weight:650;
+  font-size:.92rem;
+  padding:8px 8px;
+  border-radius:10px;
+  white-space:nowrap;
+}
+
+.site-nav a:hover{
+  background:rgba(41,57,105,.06);
+}
+
+.site-nav .active{
+  border-bottom:2px solid var(--yellow);
+  border-radius:0;
+  padding-bottom:6px;
+}
+
+.nav-cta{
+  background:var(--yellow);
+  color:#111 !important;
+  padding:8px 12px !important;
+  border-radius:12px;
+}
+
+.nav-toggle{
+  display:none;
+  margin-left:auto;
+  border:1px solid rgba(0,0,0,.12);
+  background:#fff;
+  border-radius:12px;
+  padding:8px 10px;
+  font-size:18px;
+  cursor:pointer;
+}
+
+/* Mobile menu */
+@media(max-width:820px){
+  .nav-toggle{display:inline-flex;}
+  .brand img{height:34px;}
+
+  .site-nav{
+    display:none;
+    position:absolute;
+    top:calc(100% + 1px);
+    left:0;
+    right:0;
+    background:#fff;
+    border-bottom:1px solid rgba(0,0,0,.08);
+    padding:10px 5% 14px;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:6px;
+  }
+
+  .site-nav.open{display:flex;}
+
+  .site-nav a{
+    width:100%;
+    padding:10px 10px;
+  }
+
+  .nav-cta{
+    width:100%;
+    text-align:center;
+  }
+}
+
+/* ===== HOME HERO ===== */
+
+.hero--image{
+  min-height:72vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  background:
+    linear-gradient(90deg, rgba(41,57,105,.75), rgba(200,16,46,.55)),
+    url('assets/hero-placeholder.jpg') center/cover no-repeat;
+}
+
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.18);
+}
+
+.hero-content{
+  position:relative;
+  max-width:900px;
+  padding:0 5%;
+  text-align:center;
+  color:#fff;
+}
+
+.hero-content h1{
+  font-size:3rem;
+  line-height:1.1;
+  margin-bottom:14px;
+  text-shadow:0 10px 22px rgba(0,0,0,.35);
+}
+
+.hero-content p{
+  font-size:1.1rem;
+  opacity:.95;
+  margin-bottom:12px;
+}
+
+.hero-flow{
+  display:inline-block;
+  margin:14px 0 22px;
+  padding:10px 14px;
+  border-radius:999px;
+  background:rgba(255,255,255,.14);
+  backdrop-filter:blur(6px);
+}
+
+.hero-actions{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  border-radius:14px;
+  padding:12px 16px;
+  font-weight:800;
+}
+
+.btn-primary{
+  background:var(--yellow);
+  color:#111;
+}
+
+.btn-ghost{
+  border:1px solid rgba(255,255,255,.55);
+  color:#fff;
+  background:rgba(255,255,255,.08);
+}
+
+@media(max-width:820px){
+  .hero-content h1{font-size:2.1rem;}
+  .hero--image{min-height:68vh;}
+}
+
+/* ===== CARDS ===== */
+
+.mini-card{
+  background:#fff;
+  border-radius:14px;
+  padding:18px;
+  box-shadow:0 10px 26px rgba(0,0,0,.06);
+}
+
+.mini-card h3{
+  color:var(--indigo);
+  margin-bottom:6px;
+}
+
+/* ===== FOOTER ===== */
+
+.site-footer{
+  background:var(--indigo);
+  color:#fff;
+  padding:22px 0;
+  margin-top:40px;
+}
+
+.footer-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+.footer-link{
+  color:var(--yellow);
+  text-decoration:none;
+  font-weight:700;
+}
+
+/* =========================
+   SERVICES: Balanced desktop grid + mobile swipe
+   Works with:
+   #servicesCard > #svcSlider > #svcTrack > .mini-card
+========================= */
+
+/* The wrapper card should not force flex sizing quirks */
+#servicesCard{
+  padding: 22px;
+}
+
+/* Desktop defaults */
+#svcSlider{
+  overflow: visible;
+}
+
+#svcTrack{
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  align-items: stretch;
+}
+
+/* Make sure the service tiles stretch evenly */
+#svcTrack > .mini-card{
+  height: 100%;
+}
+
+/* Mobile swipe */
+@media (max-width: 820px){
+  #svcSlider{
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #svcSlider::-webkit-scrollbar{
+    display: none;
+  }
+
+  #svcTrack{
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 14px;
+  }
+
+  #svcTrack > .mini-card{
+    flex: 0 0 82vw;
+    scroll-snap-align: start;
+    height: auto;
+  }
+
+  #svcPrev, #svcNext{
+    display: none;
+  }
+}
+
+/* ===== CLEAN FOOTER ===== */
+
+.footer-grid{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding:28px 0 12px;
+}
+
+.footer-title{
+  font-size:1.7rem;
+  font-weight:800;
+}
+
+.footer-line{
+  margin-top:6px;
+  opacity:.92;
+}
+
+.footer-left a{
+  color:#fff;
+  text-decoration:none;
+}
+
+.footer-right{
+  display:flex;
+  align-items:center;
+}
+
+.social{
+  width:46px;
+  height:46px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:14px;
+  color:#fff;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.16);
+  transition:.2s;
+}
+.social:hover{
+  background:rgba(255,255,255,.22);
+}
+
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.14);
+  padding:14px 0 20px;
+  opacity:.9;
+}
+
+@media(max-width:820px){
+  .footer-grid{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:14px;
+  }
+}
+
+.site-footer .container{
+  max-width:1150px;
+  margin:0 auto;
+  padding-left:5%;
+  padding-right:5%;
+}
+
+@media(max-width:820px){
+  .site-footer .container{
+    padding-left:5%;
+    padding-right:5%;
+  }
+}
+
+.section[hidden] { padding: 0 !important; margin: 0 !important; }
+
+/* =========================
+   ABOUT PAGE: Rich text formatting
+========================= */
+.richtext{
+  max-width: 950px;
+}
+
+.richtext p{
+  margin: 0 0 14px;
+}
+
+.richtext h2{
+  margin: 22px 0 10px;
+  color: var(--indigo);
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+
+.richtext h3{
+  margin: 16px 0 8px;
+  color: var(--indigo);
+  font-size: 1.05rem;
+  line-height: 1.25;
+}
+
+.richtext ul{
+  margin: 0 0 14px;
+  padding-left: 18px;
+}
+
+.richtext li{
+  margin: 6px 0;
+}
+
+/* =========================
+   ABOUT PAGE: Founder spacing + photo
+========================= */
+#founderSection{
+  padding-top: 18px;
+}
+
+#founderCard{
+  margin-top: 10px;
+}
+
+#founderPhotoWrap{
+  width: 140px !important;
+  height: 160px !important;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+#founderPhoto{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: top;
+  display: block;
+}
+
+/* =========================
+   HOME: Trusted Partners marquee
+========================= */
+#partnersSection .container {
+  padding-top: 18px;
+}
+
+#partnersTitle {
+  color: var(--indigo);
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+
+.partners-marquee {
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 10px 26px rgba(0,0,0,.06);
+  padding: 14px 0;
+}
+
+.partners-marquee::before,
+.partners-marquee::after{
+  content:"";
+  position:absolute;
+  top:0; bottom:0;
+  width: 60px;
+  z-index: 2;
+  pointer-events: none;
+}
+.partners-marquee::before{
+  left:0;
+  background: linear-gradient(to right, #fff, rgba(255,255,255,0));
+}
+.partners-marquee::after{
+  right:0;
+  background: linear-gradient(to left, #fff, rgba(255,255,255,0));
+}
+
+#partnersTrack{
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  width: max-content;
+  padding: 0 22px;
+  will-change: transform;
+}
+
+.partner-item{
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,.06);
+  background: rgba(41,57,105,.03);
+  white-space: nowrap;
+}
+
+.partner-logo{
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.06);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.partner-logo img{
+  width:100%;
+  height:100%;
+  object-fit: contain;
+  padding: 6px;
+}
+
+.partner-name{
+  font-weight: 750;
+  color: var(--indigo);
+  font-size: .95rem;
+}
+
+.partners-track-anim {
+  animation: partnersScroll 50s linear infinite;
+}
+
+@keyframes partnersScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.partners-marquee:hover #partnersTrack {
+  animation-play-state: paused;
+}
+
+@media(max-width:820px){
+  .partner-item { padding: 10px 12px; }
+  .partner-name { font-size: .9rem; }
+  .partners-marquee::before,
+  .partners-marquee::after { width: 34px; }
+}
+
+/* =========================
+   CONTACT PAGE (FIXED for your actual HTML: .contact-stack + .contact-direct-card)
+========================= */
+
+/* Make the 2 columns stretch to the same height */
+.contact-stack{
+  align-items: stretch !important;
+}
+@media (min-width: 920px){
+  .contact-stack{
+    align-items: stretch !important;
+  }
+  .contact-stack > *{
+    height: 100% !important;
+    align-self: stretch !important;
+  }
+}
+
+/* Ensure both cards fill height */
+#contactFormCard{
+  height: 100% !important;
+  display: flex;
+  flex-direction: column;
+}
+#contactFormCard form{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+#contactFormCard form > div{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Make textarea expand to help match heights nicely */
+#contactFormCard textarea{
+  min-height: 160px;
+}
+
+/* Right card: force same height + remove border/shadow even if inline CSS exists */
+#contactDetailsSection{
+  height: 100% !important;
+}
+#contactDetailsSection .contact-direct-card{
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+
+  border: none !important;
+  box-shadow: none !important;
+
+  /* your old CSS centered everything; override */
+  text-align: left !important;
+}
+
+/* Match heading size & align right (same vibe as "Message") */
+#contactFormCard h2{
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+#contactDetailsSection .contact-direct-card h3{
+  font-size: 2rem !important;
+  font-weight: 800 !important;
+  color: var(--indigo) !important;
+  margin: 0 0 14px 0 !important;
+  text-align: left !important;
+}
+
+/* Let contact lines fill remaining space */
+#contactDetailsSection .contact-lines{
+  flex: 1 !important;
+}
+
+/* =========================
+   TESTIMONIALS (Editorial layout)
+========================= */
+.page-title {
+  color: var(--indigo);
+  font-size: 44px;
+  margin: 10px 0 12px;
+}
+
+.page-intro {
+  max-width: 900px;
+  margin: 0 0 24px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.testimonials-list {
+  display: grid;
+  gap: 34px;
+  margin-top: 20px;
+}
+
+.testimonial-block {
+  padding: 0;
+  max-width: 980px;
+}
+
+.testimonial-title {
+  font-size: 22px;
+  font-weight: 800;
+  margin: 0 0 12px;
+  color: #111;
+}
+
+.testimonial-quote {
+  margin: 0;
+  padding-left: 18px;
+  border-left: 4px solid rgba(0,0,0,0.12);
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.75;
+  color: #111;
+}
+
+.testimonial-quote p {
+  margin: 0;
+}
+
+.testimonial-by {
+  margin-top: 14px;
+  font-size: 18px;
+  font-style: italic;
+  color: #111;
+}
+
+.testimonial-divider {
+  margin-top: 26px;
+  border: none;
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+
+/* =========================
+   PAGE HERO (All pages except homepage)
+   - Similar to homepage banner, but shorter height
+   - Background image + gradient overlay
+   - NO border
+========================= */
+
+.page-hero{
+  margin: 0;
+  width: 100%;
+}
+
+.page-hero-inner{
+  position: relative;
+  width: 100%;
+  min-height: 240px;
+  padding: 64px 8vw;
+
+  overflow: hidden;
+
+  /* ✅ absolutely no border/shadow */
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0;
+
+  background:
+    linear-gradient(90deg, rgba(41,57,105,.75), rgba(200,16,46,.55));
+}
+
+/* Background image layer */
+.page-hero-inner::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: var(--page-hero-bg, none);
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.02);
+  z-index: 0;
+}
+
+/* Overlay layer for readability */
+.page-hero-inner::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: rgba(255,255,255,.72);
+  z-index: 1;
+}
+
+/* Text */
+.page-hero-text{
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+}
+
+.page-hero-title{
+  font-size: clamp(40px, 4.6vw, 60px);
+  line-height: 1.05;
+  margin: 0;
+  color: var(--indigo);
+  letter-spacing: -0.6px;
+}
+
+/* No subtitle */
+.page-hero-subtitle{ display:none; }
+
+/* Hide old image block */
+.page-hero-media{ display:none !important; }
+
+/* Mobile */
+@media (max-width: 720px){
+  .page-hero-inner{
+    min-height: 190px;
+    padding: 48px 24px;
+  }
+}
+/* ============================
+   Fix: remove grey tint/overlay on inner page hero
+   (does NOT touch homepage hero)
+   ============================ */
+
+/* 1) Kill common overlay pseudo-elements */
+#pageHero::before,
+#pageHero::after {
+  background: none !important;
+  opacity: 0 !important;
+  filter: none !important;
+  content: none !important; /* if overlay was created with pseudo element */
+}
+
+/* 2) If a real overlay element exists, hide it (covers most templates) */
+#pageHero .overlay,
+#pageHero .hero-overlay,
+#pageHero .banner-overlay,
+#pageHero .page-hero-overlay,
+#pageHero .bg-overlay,
+#pageHero [class*="overlay"] {
+  background: transparent !important;
+  opacity: 0 !important;
+  display: none !important;
+}
+
+/* 3) Remove any grey background on the hero container/content wrapper */
+#pageHero,
+#pageHero * {
+  filter: none !important; /* removes grayscale/contrast filters if any */
+}
+
+#pageHero {
+  background: transparent !important;
+}
+
+#pageHero #pageHeroImage {
+  opacity: 1 !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+}
+/* If your hero text block has a background, make it transparent */
+#pageHero .hero-content,
+#pageHero .page-hero-content,
+#pageHero .hero-inner,
+#pageHero .page-hero-inner,
+#pageHero .hero-text,
+#pageHero [class*="content"] {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+/* =========================
+   Remove grey text panel on inner page hero
+   ========================= */
+
+/* Hide the grey text block entirely */
+#pageHero .page-hero-text {
+  display: none !important;
+}
+
+/* Make hero image fill full banner */
+#pageHero .page-hero-media {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Make image stretch properly */
+#pageHero .page-hero-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block;
+}
+
+/* Ensure hero container has no background */
+#pageHero {
+  background: transparent !important;
+}
+/* =========================================
+   FINAL FIX: Inner-page hero shows real image (no grey)
+   - removes the white/grey overlay
+   - shows the <img> instead of hiding it
+   - keeps it full-width
+   ========================================= */
+
+/* Remove the grey/white overlay + gradient tint */
+.page-hero-inner::after{
+  background: transparent !important;
+}
+
+/* Optional: if you want ZERO tint (remove gradient too) */
+.page-hero-inner{
+  background: transparent !important;
+}
+
+/* Show the image block (it was hidden before) */
+.page-hero-media{
+  display: block !important;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Make the image fill the banner */
+.page-hero-image{
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block;
+}
+
+/* Hide the text container so it doesn’t create a grey panel */
+.page-hero-text{
+  display: none !important;
+}
+
+/* Ensure the hero height looks like landscape 16:9 */
+.page-hero-inner{
+  aspect-ratio: 16 / 9;
+  min-height: 260px;
+  max-height: 70vh;
+  padding: 0 !important;   /* text hidden, so no need padding */
+  overflow: hidden;
+  position: relative;
+}

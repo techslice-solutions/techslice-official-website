@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Techslice Solutions</title>
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Contact page layout polish (page-only) -->
+  <style>
+    /* Container sizing */
+    #contactSection .container {
+      max-width: 1050px;
+    }
+
+    /* Center the heading + intro like modern forms */
+    .contact-intro {
+      text-align: center;
+      margin-bottom: 26px;
+    }
+    .contact-intro h1 {
+      margin-bottom: 10px !important;
+    }
+    .contact-intro p {
+      margin: 0 auto;
+      max-width: 760px;
+    }
+
+    /* Default: stacked layout (mobile-first) */
+    .contact-stack {
+      display: grid;
+      gap: 22px;
+      margin-top: 18px;
+      align-items: start;
+    }
+
+    /* Desktop: 2-column layout (form left, details right) */
+    @media (min-width: 920px) {
+      .contact-stack {
+        grid-template-columns: 1.25fr 0.85fr;
+        gap: 26px;
+      }
+    }
+
+    /* FORM CARD */
+    #contactFormCard.mini-card {
+      padding: 26px;
+      border-radius: 18px;
+    }
+
+    /* DETAILS CARD */
+    #contactDetailsSection {
+      display: block;
+    }
+
+    .contact-direct-card {
+      padding: 22px;
+      border-radius: 16px;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    }
+
+    .contact-direct-card h3 {
+      text-align: center;
+      margin: 0 0 14px 0;
+      color: var(--indigo);
+    }
+
+    .contact-lines {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: left;
+      line-height: 1.7;
+    }
+
+    /* Icon + label layout */
+    .contact-line {
+      display: grid;
+      grid-template-columns: 26px 1fr;
+      gap: 10px;
+      align-items: start;
+      padding: 10px 0;
+    }
+
+    .contact-line + .contact-line {
+      border-top: 1px dashed rgba(0,0,0,0.10);
+    }
+
+    .ci {
+      width: 26px;
+      height: 26px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background: rgba(44, 59, 99, 0.08);
+      font-size: 14px;
+      line-height: 1;
+      margin-top: 2px;
+    }
+
+    .contact-line b {
+      color: #1f2f57;
+    }
+
+    /* Link styling */
+    .contact-line a {
+      color: var(--indigo);
+      text-decoration: none;
+      font-weight: 600;
+      word-break: break-word;
+    }
+    .contact-line a:hover {
+      text-decoration: underline;
+    }
+
+    /* Mobile spacing */
+    @media (max-width: 640px) {
+      #contactFormCard.mini-card { padding: 18px; }
+      .contact-direct-card { padding: 18px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="brand" aria-label="TechSlice Solutions Home">
+      <img id="siteLogo" src="assets/logo-techslice.png" alt="TechSlice Solutions">
+    </a>
+
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
+
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Techslice</a>
+      <a href="services.html">Services</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="faq.html">FAQ</a>
+      <a class="active nav-cta" href="contact.html">Contact Us</a>
+    </nav>
+  </div>
+</header>
+<section class="page-hero" id="pageHero" hidden>
+  <div class="container page-hero-inner">
+    <div class="page-hero-text">
+      <h1 id="pageHeroTitle" class="page-hero-title"></h1>
+      <p id="pageHeroSubtitle" class="page-hero-subtitle"></p>
+    </div>
+
+    <div class="page-hero-media">
+      <img id="pageHeroImage" class="page-hero-image" src="" alt="">
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contactSection">
+  <div class="container">
+
+    <!-- INTRO -->
+    <div class="contact-intro">
+      <h1 id="contactTitle" style="color:var(--indigo);">Contact Us</h1>
+      <p id="contactIntro">
+        Send your requirements—tool specs, drawings, quantities—and we’ll respond quickly.
+      </p>
+    </div>
+
+    <!-- Layout -->
+    <div class="contact-stack">
+
+      <!-- FORM (Primary) -->
+      <div class="mini-card" id="contactFormCard">
+        <h2 style="color:var(--indigo); margin-bottom:10px;">Message</h2>
+
+        <!-- Netlify-ready form -->
+       <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/contact-success.html">
+        <input type="hidden" name="form-name" value="contact">
+
+            <!-- spam protection -->
+            <p style="display:none;">
+            <label>Don’t fill this out: <input name="bot-field"></label>
+            </p>
+
+          <div style="display:grid; gap:10px;">
+            <input name="name" placeholder="Your Name" required
+              style="padding:12px;border-radius:12px;border:1px solid rgba(0,0,0,.15);">
+            <input name="email" type="email" placeholder="Email" required
+              style="padding:12px;border-radius:12px;border:1px solid rgba(0,0,0,.15);">
+            <input name="mobile" placeholder="Mobile Number" required
+              style="padding:12px;border-radius:12px;border:1px solid rgba(0,0,0,.15);">
+            <textarea name="message" placeholder="Message" rows="5" required
+              style="padding:12px;border-radius:12px;border:1px solid rgba(0,0,0,.15);"></textarea>
+
+            <button class="btn btn-primary" type="submit">Send Message</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- CONTACT DETAILS (Secondary) -->
+      <div id="contactDetailsSection" hidden>
+        <div class="contact-direct-card">
+          <!-- CMS-controlled title (you can set this to “Reach us directly” from Sanity) -->
+          <h3 id="contactCardTitle"></h3>
+
+          <div class="contact-lines">
+            <div class="contact-line" id="contactAddressLine" hidden>
+              <span class="ci" aria-hidden="true">📍</span>
+              <div>
+                <b>Address:</b> <span id="contactAddress"></span>
+              </div>
+            </div>
+
+            <div class="contact-line" id="contactPhoneLine" hidden>
+              <span class="ci" aria-hidden="true">☎</span>
+              <div>
+                <b>Phone:</b> <a id="contactPhone" href="#"></a>
+              </div>
+            </div>
+
+            <div class="contact-line" id="contactEmailLine" hidden>
+              <span class="ci" aria-hidden="true">✉</span>
+              <div>
+                <b>Email:</b> <a id="contactEmail" href="#"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /contact-stack -->
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-left">
+      <div class="footer-title" id="footerBrand">TechSlice Solutions</div>
+      <div class="footer-line" id="footerPlace">Chennai, India</div>
+      <div class="footer-line">
+        <span class="footer-icon">☎</span>
+        <a id="footerPhone" href="tel:+910000000000">+91 00000 00000</a>
+      </div>
+    </div>
+
+    <div class="footer-right">
+      <a id="footerLinkedin" class="social" href="#" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
+          <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5ZM0.5 23.5h4V7.98h-4V23.5Zm7 0h4v-8.4c0-2.25.43-4.43 3.22-4.43 2.75 0 2.78 2.57 2.78 4.58v8.25h4v-9.1c0-4.47-.96-7.9-6.18-7.9-2.5 0-4.18 1.37-4.86 2.67h-.06V7.98h-3.8V23.5Z" fill="currentColor"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <div>© <span id="year"></span> TechSlice Solutions. All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

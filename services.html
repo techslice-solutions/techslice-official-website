@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services - Techslice Solutions</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="brand" aria-label="TechSlice Solutions Home">
+      <img id="siteLogo" src="assets/logo-techslice.png" alt="TechSlice Solutions">
+    </a>
+
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
+
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Techslice</a>
+      <a class="active" href="services.html">Services</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="faq.html">FAQ</a>
+      <a class="nav-cta" href="contact.html">Contact Us</a>
+    </nav>
+  </div>
+</header>
+<section class="page-hero" id="pageHero" hidden>
+  <div class="container page-hero-inner">
+    <div class="page-hero-text">
+      <h1 id="pageHeroTitle" class="page-hero-title"></h1>
+      <p id="pageHeroSubtitle" class="page-hero-subtitle"></p>
+    </div>
+
+    <div class="page-hero-media">
+      <img id="pageHeroImage" class="page-hero-image" src="" alt="">
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div id="servicesHeaderBlock">
+      <h1 id="servicesTitle" style="color:var(--indigo); margin-bottom:12px;"></h1>
+      <p id="servicesIntro" style="max-width:850px; margin-bottom:18px;"></p>
+    </div>
+
+    <div class="mini-card" id="servicesCard">
+      <div id="svcSlider">
+        <div id="svcTrack"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-left">
+      <div class="footer-title" id="footerBrand">TechSlice Solutions</div>
+      <div class="footer-line" id="footerPlace">Chennai, India</div>
+      <div class="footer-line">
+        <span class="footer-icon">☎</span>
+        <a id="footerPhone" href="tel:+910000000000">+91 00000 00000</a>
+      </div>
+    </div>
+
+    <div class="footer-right">
+      <a id="footerLinkedin" class="social" href="#" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
+          <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5ZM0.5 23.5h4V7.98h-4V23.5Zm7 0h4v-8.4c0-2.25.43-4.43 3.22-4.43 2.75 0 2.78 2.57 2.78 4.58v8.25h4v-9.1c0-4.47-.96-7.9-6.18-7.9-2.5 0-4.18 1.37-4.86 2.67h-.06V7.98h-3.8V23.5Z" fill="currentColor"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <div>© <span id="year"></span> TechSlice Solutions. All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
