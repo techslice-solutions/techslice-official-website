@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://techslicesolutions.com/sitemap.xml
