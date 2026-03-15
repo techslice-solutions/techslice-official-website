@@ -7,27 +7,25 @@
   <meta name="description" content="Get in touch with Techslice Solutions for industrial cutting tool distribution, partnerships, and manufacturing efficiency solutions.">
   <link rel="stylesheet" href="css/styles.css">
 
-  <!-- Contact page layout polish (page-only) -->
   <style>
-    /* Container sizing */
     #contactSection .container {
       max-width: 1050px;
     }
 
-    /* Center the heading + intro like modern forms */
     .contact-intro {
       text-align: center;
       margin-bottom: 26px;
     }
+
     .contact-intro h1 {
       margin-bottom: 10px !important;
     }
+
     .contact-intro p {
       margin: 0 auto;
       max-width: 760px;
     }
 
-    /* Default: stacked layout (mobile-first) */
     .contact-stack {
       display: grid;
       gap: 22px;
@@ -35,7 +33,6 @@
       align-items: start;
     }
 
-    /* Desktop: 2-column layout (form left, details right) */
     @media (min-width: 920px) {
       .contact-stack {
         grid-template-columns: 1.25fr 0.85fr;
@@ -43,13 +40,11 @@
       }
     }
 
-    /* FORM CARD */
     #contactFormCard.mini-card {
       padding: 26px;
       border-radius: 18px;
     }
 
-    /* DETAILS CARD */
     #contactDetailsSection {
       display: block;
     }
@@ -75,7 +70,6 @@
       line-height: 1.7;
     }
 
-    /* Icon + label layout */
     .contact-line {
       display: grid;
       grid-template-columns: 26px 1fr;
@@ -105,18 +99,17 @@
       color: #1f2f57;
     }
 
-    /* Link styling */
     .contact-line a {
       color: var(--indigo);
       text-decoration: none;
       font-weight: 600;
       word-break: break-word;
     }
+
     .contact-line a:hover {
       text-decoration: underline;
     }
 
-    /* Mobile spacing */
     @media (max-width: 640px) {
       #contactFormCard.mini-card { padding: 18px; }
       .contact-direct-card { padding: 18px; }
@@ -144,9 +137,10 @@
     </nav>
   </div>
 </header>
+
 <section class="page-hero" id="pageHero" hidden>
-  <div class="container page-hero-inner">
-    <div class="page-hero-text">
+  <div class="page-hero-inner">
+    <div class="page-hero-text container">
       <h1 id="pageHeroTitle" class="page-hero-title"></h1>
       <p id="pageHeroSubtitle" class="page-hero-subtitle"></p>
     </div>
@@ -160,7 +154,6 @@
 <section class="section" id="contactSection">
   <div class="container">
 
-    <!-- INTRO -->
     <div class="contact-intro">
       <h1 id="contactTitle" style="color:var(--indigo);">Contact Us</h1>
       <p id="contactIntro">
@@ -168,21 +161,17 @@
       </p>
     </div>
 
-    <!-- Layout -->
     <div class="contact-stack">
 
-      <!-- FORM (Primary) -->
       <div class="mini-card" id="contactFormCard">
         <h2 style="color:var(--indigo); margin-bottom:10px;">Message</h2>
 
-        <!-- Netlify-ready form -->
-       <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="contact-success.html">
-        <input type="hidden" name="form-name" value="contact">
+        <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="contact-success.html">
+          <input type="hidden" name="form-name" value="contact">
 
-            <!-- spam protection -->
-            <p style="display:none;">
+          <p style="display:none;">
             <label>Don’t fill this out: <input name="bot-field"></label>
-            </p>
+          </p>
 
           <div style="display:grid; gap:10px;">
             <input name="name" placeholder="Your Name" required
@@ -199,10 +188,8 @@
         </form>
       </div>
 
-      <!-- CONTACT DETAILS (Secondary) -->
       <div id="contactDetailsSection" hidden>
         <div class="contact-direct-card">
-          <!-- CMS-controlled title (you can set this to “Reach us directly” from Sanity) -->
           <h3 id="contactCardTitle"></h3>
 
           <div class="contact-lines">
@@ -230,7 +217,7 @@
         </div>
       </div>
 
-    </div><!-- /contact-stack -->
+    </div>
 
   </div>
 </section>
