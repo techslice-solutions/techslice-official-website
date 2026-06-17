@@ -540,6 +540,26 @@ function renderPartnersBelt(partnersTitle, partners) {
 }
 
 /* =========================
+   PRODUCT MENU
+========================= */
+async function loadProductMenu() {
+  const data = await fetchContent(`*[_type == "productMenu"][0]{
+    title,
+    columns[]{
+      heading,
+      items[]{
+        label,
+        link,
+        openInNewTab
+      }
+    }
+  }`);
+
+  if (!data) return;
+
+  renderProductMenu(data);
+}
+/* =========================
    HOME PAGE
 ========================= */
 async function loadHomePage() {
@@ -1024,22 +1044,50 @@ async function loadTestimonialsPage() {
   });
 }
 
-/* =========================
-   MOBILE NAV + YEAR
-========================= */
-(function () {
-  const btn = document.querySelector(".nav-toggle");
-  const nav = document.querySelector(".site-nav");
-  if (btn && nav) {
-    btn.addEventListener("click", () => {
-      const isOpen = nav.classList.toggle("open");
-      btn.setAttribute("aria-expanded", String(isOpen));
-    });
-  }
 
-  const year = document.getElementById("year");
-  if (year) year.textContent = new Date().getFullYear();
-})();
+
+function renderProductMenu(data) {
+  const menuWrap = document.getElementById("productsMegaMenu");
+  if (!menuWrap) return;
+
+  const allCols = Array.isArray(data.columns) ? data.columns : [];
+
+  // Distribute all categories into 4 visual columns using greedy bin-packing
+  // so no column is much taller than others — eliminates the gap problem.
+  const NUM_COLS = 4;
+  const visualCols = Array.from({ length: NUM_COLS }, () => []);
+  const colWeight  = Array(NUM_COLS).fill(0);
+
+  allCols.forEach(col => {
+    const minIdx = colWeight.indexOf(Math.min(...colWeight));
+    visualCols[minIdx].push(col);
+    colWeight[minIdx] += (col.items || []).length + 1.5; // heading costs ~1.5 rows
+  });
+
+  menuWrap.innerHTML = visualCols.map(groups => {
+    const groupsHtml = groups.map(col => {
+      const heading = (col.heading || "").trim();
+      const itemsHtml = (col.items || []).map(item => {
+        const label = (item.label || "").trim();
+        const link  = (item.link  || "").trim();
+        if (!label) return "";
+        return `<li><a href="${escapeHtml(link)}"
+                       target="${item.openInNewTab ? "_blank" : "_self"}"
+                       rel="noopener noreferrer">${escapeHtml(label)}</a></li>`;
+      }).join("");
+
+      if (!heading && !itemsHtml) return "";
+
+      return `
+        <div class="mega-group">
+          ${heading ? `<h4>${escapeHtml(heading)}</h4>` : ""}
+          <ul>${itemsHtml}</ul>
+        </div>`;
+    }).join("");
+
+    return `<div class="mega-col">${groupsHtml}</div>`;
+  }).join("");
+}
 
 /* =========================
    RUN
@@ -1051,3 +1099,82 @@ loadServicesPage().catch(console.error);
 loadFaqPage().catch(console.error);
 loadTestimonialsPage().catch(console.error);
 loadContactPage().catch(console.error);
+loadProductMenu().catch(console.error);
+
+/* =========================
+   NAV: HAMBURGER + PRODUCTS TOGGLE
+   NOTE: Script is at bottom of <body> so DOM is ready — no DOMContentLoaded needed.
+========================= */
+(function initNav() {
+  const btn = document.querySelector(".nav-toggle");
+  const nav = document.querySelector(".site-nav");
+  const productsMenu = document.querySelector(".products-menu");
+  const productsToggle = document.querySelector(".products-toggle");
+
+  // Ensure nav starts CLOSED on every page load
+  if (nav) nav.classList.remove("open");
+  if (productsMenu) productsMenu.classList.remove("open");
+  if (btn) btn.setAttribute("aria-expanded", "false");
+
+  function closeNav() {
+    if (!nav) return;
+    nav.classList.remove("open");
+    if (btn) btn.setAttribute("aria-expanded", "false");
+    if (productsMenu) productsMenu.classList.remove("open");
+  }
+
+  // Hamburger open/close
+  if (btn && nav) {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = nav.classList.toggle("open");
+      btn.setAttribute("aria-expanded", String(isOpen));
+      if (!isOpen && productsMenu) productsMenu.classList.remove("open");
+    });
+  }
+
+  // Close nav when any regular nav link is clicked on mobile
+  if (nav) {
+    nav.querySelectorAll("a:not(.products-toggle)").forEach(link => {
+      link.addEventListener("click", () => {
+        if (window.innerWidth <= 820) closeNav();
+      });
+    });
+  }
+
+  // Products toggle: click on ALL screen sizes (no hover)
+  if (productsToggle && productsMenu) {
+    productsToggle.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      productsMenu.classList.toggle("open");
+    });
+  }
+
+  // Position mega-menu flush with sticky header bottom
+  function positionMegaMenu() {
+    const header = document.querySelector(".site-header");
+    const megaMenu = document.querySelector(".mega-menu");
+    if (header && megaMenu) {
+      megaMenu.style.top = header.getBoundingClientRect().bottom + "px";
+    }
+  }
+
+  positionMegaMenu();
+  window.addEventListener("resize", positionMegaMenu);
+  window.addEventListener("scroll", positionMegaMenu);
+
+  // Close products dropdown only when clicking OUTSIDE the mega menu AND outside the toggle
+  document.addEventListener("click", (e) => {
+    if (!productsMenu) return;
+    const megaMenu = document.querySelector(".mega-menu");
+    // Don't close if clicking inside the mega menu itself
+    if (megaMenu && megaMenu.contains(e.target)) return;
+    // Don't close if clicking the toggle (it handles its own state)
+    if (productsToggle && productsToggle.contains(e.target)) return;
+    productsMenu.classList.remove("open");
+  });
+
+  const year = document.getElementById("year");
+  if (year) year.textContent = new Date().getFullYear();
+})();

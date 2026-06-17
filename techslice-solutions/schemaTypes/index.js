@@ -7,6 +7,7 @@ import testimonialsPage from './testimonialsPage.js'
 import faqPage from './faqPage.js'
 import servicesPage from './servicesPage.js'
 import contactPage from "./contactPage.js";
+import productMenu from './productMenu'
 
 export const schemaTypes = [
   siteSettings,
@@ -18,4 +19,5 @@ export const schemaTypes = [
   faqPage,
   servicesPage,
   contactPage,
+  productMenu
 ]

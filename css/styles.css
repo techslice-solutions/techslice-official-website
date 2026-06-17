@@ -94,7 +94,8 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 28px;
+  gap: 24px;
+  padding: 0 24px;
 }
 
 .site-nav a {
@@ -143,18 +144,17 @@ img {
 }
 
 .site-nav .nav-cta {
-  position: absolute;
-  right: 5%;
-  top: 50%;
-  transform: translateY(-50%);
+  margin-left: auto;
   background: var(--yellow);
   color: #111 !important;
-  padding: 12px 18px !important;
+  padding: 10px 18px !important;
   border-radius: 999px;
   border: 1px solid rgba(0, 0, 0, .10);
   box-shadow: 0 12px 26px rgba(0, 0, 0, .12);
   text-transform: none;
   letter-spacing: 0;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .site-nav .nav-cta::after {
@@ -164,7 +164,7 @@ img {
 .site-nav .nav-cta:hover {
   filter: brightness(.98);
   box-shadow: 0 14px 30px rgba(0, 0, 0, .16);
-  transform: translateY(-50%);
+  transform: none;
 }
 
 .nav-toggle {
@@ -1827,5 +1827,222 @@ img {
 
   #servicesHeaderBlock {
     margin-bottom: 14px !important;
+  }
+}
+
+/* =========================
+   PRODUCTS MENU WRAPPER
+========================= */
+
+/* products-menu sits inline in flex nav — make it behave like other nav items */
+.products-menu {
+  position: static;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* The toggle link must look identical to other .site-nav a links */
+.products-toggle {
+  position: relative;
+  text-decoration: none;
+  color: var(--indigo);
+  font-weight: 800;
+  font-size: .95rem;
+  letter-spacing: .6px;
+  padding: 14px 2px 10px;
+  white-space: nowrap;
+  text-transform: uppercase;
+  transition: color .18s ease, transform .18s ease;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Underline bar identical to other nav links */
+.products-toggle::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 6px;
+  height: 3px;
+  background: var(--yellow);
+  border-radius: 99px;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform .22s ease;
+  opacity: .95;
+}
+
+.products-toggle:hover,
+.products-menu.open .products-toggle {
+  color: #111;
+  transform: translateY(-1px);
+}
+
+.products-toggle:hover::after,
+.products-menu.open .products-toggle::after {
+  transform: scaleX(1);
+}
+
+/* Small chevron indicator */
+.products-toggle .chevron {
+  font-size: 0.6rem;
+  transition: transform 0.2s ease;
+  display: inline-block;
+  margin-left: 2px;
+}
+
+.products-menu.open .products-toggle .chevron {
+  transform: rotate(180deg);
+}
+
+/* =========================
+   MEGA MENU
+========================= */
+
+.mega-menu {
+  position: fixed;
+  top: auto;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.13);
+  padding: 24px 5% 28px;
+  display: none;
+  z-index: 1000;
+  border-top: 3px solid var(--red);
+}
+
+.products-menu.open .mega-menu {
+  display: block;
+}
+
+/* 4-column grid — each column contains stacked category groups */
+.mega-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0 40px;
+  max-width: 1150px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+/* Visual column — stacks groups vertically */
+.mega-col {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Category group: heading + its links */
+.mega-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.mega-group h4 {
+  color: var(--red);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(200,16,46,0.2);
+}
+
+.mega-group ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mega-group li {
+  margin-bottom: 4px;
+}
+
+/* Links — sentence case, dark */
+.mega-col a {
+  text-decoration: none;
+  color: #2a2a2a;
+  font-size: 0.88rem;
+  font-weight: 400;
+  line-height: 1.5;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  transition: color 0.15s ease;
+  display: block;
+}
+
+.mega-col a:hover {
+  color: var(--red);
+}
+
+/* =========================
+   MOBILE PRODUCTS MENU
+========================= */
+@media(max-width: 820px) {
+
+  .products-menu {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .products-toggle {
+    width: 100%;
+    padding: 12px 10px;
+    border-radius: 12px;
+    background: rgba(41, 57, 105, .03);
+    text-transform: none;
+    letter-spacing: .2px;
+    font-size: .95rem;
+    justify-content: space-between;
+  }
+
+  .products-toggle::after {
+    top: 6px;
+    left: 10px;
+    right: 10px;
+  }
+
+  /* On mobile the mega-menu is static/inline */
+  .products-menu .mega-menu {
+    position: static !important;
+    width: 100% !important;
+    box-shadow: none !important;
+    border-top: 2px solid var(--red) !important;
+    padding: 14px 4px 4px !important;
+    display: none !important;
+  }
+
+  .products-menu.open .mega-menu {
+    display: block !important;
+  }
+
+  .mega-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .mega-col {
+    gap: 12px;
+  }
+
+  .mega-group h4 {
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+
+  .mega-group li {
+    margin-bottom: 2px;
+  }
+
+  .mega-col a {
+    font-size: 13px;
   }
 }
