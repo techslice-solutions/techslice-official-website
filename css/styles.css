@@ -200,6 +200,9 @@ img {
     align-items: stretch;
     justify-content: flex-start;
     gap: 8px;
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .site-nav.open {
@@ -2023,6 +2026,13 @@ img {
     display: block !important;
   }
 
+  /* Product links inside mobile menu — plain, no card background */
+  .mega-col a {
+    background: none !important;
+    border-radius: 0 !important;
+    padding: 4px 0 !important;
+  }
+
   .mega-grid {
     display: flex;
     flex-direction: column;
@@ -2030,7 +2040,7 @@ img {
   }
 
   .mega-col {
-    gap: 12px;
+    gap: 16px;
   }
 
   .mega-group h4 {
@@ -2039,7 +2049,7 @@ img {
   }
 
   .mega-group li {
-    margin-bottom: 2px;
+    margin-bottom: 6px;
   }
 
   .mega-col a {
